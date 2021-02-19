@@ -33,7 +33,11 @@ maxDepth = 2;
     }
 
     // get links from page
-    const links = await page.$$eval('a', a => a.map(l => l.href));
+    let links = await page.$$eval('a', (a) => {
+      return a.map((l) => {
+        return plainLink = l.href.split('#')[0];
+      })
+    });
     const uniqueLinks = [...new Set(links)];  // .. well isn't that a neat trick?
 -    // if link includes 'libary.ubc.ca', crawl it (add to cluster queue)
     uniqueLinks.forEach(link => {
