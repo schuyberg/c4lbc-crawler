@@ -15,10 +15,12 @@ maxDepth = 2;
     maxConcurrency: 5,  // max 5 instances at a time
   });
 
+  let drinks = 0;
+
   const getLinks = async ({page, data}) => {
     const { url, depth } = data;
     if (depth > maxDepth) { return; } // don't navigate deeper than maxDepth
-    console.log(url, depth);
+    // console.log(url, depth);
 
     // go to page
     await page.goto(url);
@@ -26,15 +28,17 @@ maxDepth = 2;
     // does it contain repository?
     const content = await page.content();
     if(content.match(/repository/gi)){
-      console.log('Page mentions a RePoSiTorY! --- DRINK!');
+      drinks++;
+      console.log(`${url} mentions a RePoSiTorY! --- ${drinks} DRINKS!`);
     }
 
     // get links from page
     const links = await page.$$eval('a', a => a.map(l => l.href));
-    
-    // if link includes the startPath, crawl it (add to cluster queue)
-    links.forEach(link => {
-      if (link.includes(startUrl)) {
+    const uniqueLinks = [...new Set(links.concat(allLinks))];  // .. well isn't that a neat trick?
+
+    // if link includes 'libary.ubc.ca', crawl it (add to cluster queue)
+    uniqueLinks.forEach(link => {
+      if (link.includes('library.ubc.ca')) {
         cluster.queue({url: link, depth: depth + 1}, getLinks)
       }
     })
@@ -45,6 +49,7 @@ maxDepth = 2;
 
   await cluster.idle();
   await cluster.close();
+  console.log(`${drinks} pages mentioned the word "repository," how do you feel?`)
 
 })()
 
