@@ -40,7 +40,7 @@ maxDepth = 2;
     })
   }
   
-  // start by queueing crawlPath (base domain)
+  // start by queueing startPath
   cluster.queue({url: startUrl, depth: 0}, getLinks);
 
   await cluster.idle();
