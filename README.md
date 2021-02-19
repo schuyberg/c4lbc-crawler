@@ -10,7 +10,7 @@ Example scripts for crawling web pages using puppeteer and puppeteer-cluster to 
 
 2. Run script(s) with node:
 
-`node ./crawl-cluster.js`
+`node ./crawler.js`
 
 
 ## Documentation:
