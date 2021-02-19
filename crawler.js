@@ -15,7 +15,8 @@ maxDepth = 2;
     maxConcurrency: 5,  // max 5 instances at a time
   });
   let drinks = 0;
-  allLinks = [];
+  let linksCount = 0;
+  let allLinks = [];
   const getLinks = async ({page, data}) => {
     const { url, depth } = data;
     if (depth > maxDepth) { return; } // don't navigate deeper than maxDepth
@@ -23,7 +24,7 @@ maxDepth = 2;
 
     // go to page
     await page.goto(url);
-
+    linksCount++;
     // does it contain repository?
     const content = await page.content();
     if(content.match(/repository/gi)){
@@ -36,7 +37,8 @@ maxDepth = 2;
     const uniqueLinks = [...new Set(links)];  // .. well isn't that a neat trick?
 -    // if link includes 'libary.ubc.ca', crawl it (add to cluster queue)
     uniqueLinks.forEach(link => {
-      if (link.includes('library.ubc.ca')) {
+      if (link.includes('library.ubc.ca') && allLinks.indexOf(link) === -1) {
+        allLinks.push(link); // this strategy is so-so at preventing duplicate links because the cluster queue is asynchronous
         cluster.queue({url: link, depth: depth + 1}, getLinks)
       }
     })
@@ -47,7 +49,8 @@ maxDepth = 2;
 
   await cluster.idle();
   await cluster.close();
-  console.log(`${drinks} pages mentioned the word "repository," how do you feel?`)
+
+  console.log(`${linksCount} links followed and ${drinks} mentioned the word "repository," how do you feel?`)
 
 })()
 

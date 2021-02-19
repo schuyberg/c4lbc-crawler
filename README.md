@@ -31,7 +31,7 @@ Github: https://github.com/thomasdondorf/puppeteer-cluster
 
 ### Note:
 
-This crawler.js is a simplified example and still has some issues that should probably be ironed out. For example, it does nothing to handle query strings differently, and does not check whether it has crawled a particular url already. In this way, drinks counts are probably maximized.
+This crawler.js is a simplified example and still has some issues that should probably be ironed out. For example, it does nothing to handle query strings or anchors differently, and does a poor job of checking whether it has crawled a particular url already. In this way, drink counts are probably maximized.
 
 
 
