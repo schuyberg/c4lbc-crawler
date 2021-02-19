@@ -35,7 +35,7 @@ maxDepth = 2;
     // get links from page
     let links = await page.$$eval('a', (a) => {
       return a.map((l) => {
-        return plainLink = l.href.split('#')[0];
+        return l.href.split('#')[0];
       })
     });
     const uniqueLinks = [...new Set(links)];  // .. well isn't that a neat trick?
