@@ -4,6 +4,8 @@ Example scripts for crawling web pages using Node.js, puppeteer, and puppeteer-c
 
 *If a page mentions the word 'repository,' you have to drink more coffee!*
 
+**Note:** This is a simplified example and still has some issues that should probably be ironed out before you try and do anything serious with it. For example, it does nothing to handle query strings or anchors differently, and does a poor job of checking whether it has crawled a particular url already. In this way, drink counts are probably maximized.
+
 ## Usage:
 
 1. Install node dependencies:
@@ -29,9 +31,7 @@ GitHub (with examples):  https://github.com/puppeteer/puppeteer
 Github: https://github.com/thomasdondorf/puppeteer-cluster
 
 
-## Note:
 
-This crawler.js is a simplified example and still has some issues that should probably be ironed out. For example, it does nothing to handle query strings or anchors differently, and does a poor job of checking whether it has crawled a particular url already. In this way, drink counts are probably maximized.
 
 
 
