@@ -1,6 +1,8 @@
 # Puppeteer Web Crawler Example - Code4Lib BC 2021
 
-Example scripts for crawling web pages using puppeteer and puppeteer-cluster to crawl a website. Built as an example for Code4Lib BC, 2021. If a page mentions the word 'repository,' you have to drink more coffee!
+Example scripts for crawling web pages using Node.js, puppeteer, and puppeteer-cluster. Built for Code4Lib BC, 2021. 
+
+*If a page mentions the word 'repository,' you have to drink more coffee!*
 
 ## Usage:
 
@@ -17,9 +19,9 @@ Example scripts for crawling web pages using puppeteer and puppeteer-cluster to 
 
 ### Puppeteer
 
-Documentation here: https://pptr.dev/
+Documentation : https://pptr.dev/
 
-GitHub repository (with examples):  https://github.com/puppeteer/puppeteer
+GitHub (with examples):  https://github.com/puppeteer/puppeteer
 
 
 ### Puppeteer-cluster
