@@ -33,7 +33,7 @@ maxDepth = 2;
     const links = await page.$$eval('a', a => a.map(l => l.href));
     
     // if link includes the startPath, crawl it (add to cluster queue)
-    links.forEach(l => {
+    links.forEach(link => {
       if (link.includes(startUrl)) {
         cluster.queue({url: link, depth: depth + 1}, getLinks)
       }
